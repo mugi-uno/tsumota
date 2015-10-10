@@ -1,3 +1,4 @@
+<% if items.any? %>
 <table class="table">
   <tr>
     <th></th>
@@ -14,3 +15,6 @@
     </tr>
   <% end %>  
 </table>
+<% else %>
+  not found
+<% end %>
