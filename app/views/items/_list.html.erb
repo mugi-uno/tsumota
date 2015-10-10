@@ -3,6 +3,7 @@
   <tr>
     <th></th>
     <th>name</th>
+    <th>downloads</th>
     <th>created at</th>
     <th>updated at</th>
   </tr>
@@ -14,6 +15,7 @@
         <% end %>
       </td>
       <td><%= link_to item.relative_path, item %></td>
+      <td><%= item.download_count %></td>
       <td><%= item.created_at.to_s %></td>
       <td><%= item.updated_at.to_s %></td>
     </tr>

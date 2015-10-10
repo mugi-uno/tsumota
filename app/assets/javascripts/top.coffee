@@ -23,3 +23,11 @@ $ ->
       $items_list.html html
     .always ->
       $keyword.parent().addClass "waiting"
+
+  $('#items_list').on 'ajax:success',  (e, html, status, xhr) ->
+    console.log(html)
+    $items_list.html html
+
+
+  # ロード時自動検索のため、inputを強制trigger
+  $keyword.trigger "input"
