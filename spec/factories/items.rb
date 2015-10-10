@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :item do
-    filename "MyText"
+    relative_path "MyText"
 description "MyText"
   end
 

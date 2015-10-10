@@ -1,5 +1,4 @@
 require "collector.rb"
-require "register.rb"
 
 # ファイル収集バッチ本体
 class Tasks::Crawler
@@ -31,15 +30,6 @@ class Tasks::Crawler
     # collector.collect {|filename|
     #   Register.register filename
     # }
-    collector.collect {|filename|
-      Register.register filename
-    }
-  end
-
-
-  # 基底dir配下の全ファイルを取得
-  # todo:再帰処理
-  def register
-
+    collector.collect
   end
 end
