@@ -1,4 +1,7 @@
 class ItemsController < ApplicationController
+
+  # todo : get from settings
+  ROOT_PATH = "/Users/mugi/develop/ruby/tsumota/work"
  
   def show
     @item = Item.find(params[:id])
@@ -10,7 +13,9 @@ class ItemsController < ApplicationController
   end
 
   def download
-    # filepath = Rails.root.join('app', 'pdfs', 'hoge.pdf')
+    item = Item.find(params[:id])
+    path = Pathname.new(ROOT_PATH) + item.relative_path
+    send_file(path.to_s)
   end
 
 end

@@ -5,7 +5,9 @@ Rails.application.routes.draw do
   get 'items/show'
   get 'api/search' => 'items#search'
 
-  resources :items, only: [:show]
+  get 'items/:id/download' => 'items#download'
+
+  resources :items, only: ['show']
 
 
   # The priority is based upon order of creation: first created -> highest priority.
