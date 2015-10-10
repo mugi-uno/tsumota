@@ -7,7 +7,9 @@ Rails.application.routes.draw do
 
   get 'items/:id/download' => 'items#download'
 
-  resources :items, only: ['show']
+  resources :items, only: [:show]
+
+  resource :setting, only: [:edit, :update], path: "setting"
 
 
   # The priority is based upon order of creation: first created -> highest priority.
