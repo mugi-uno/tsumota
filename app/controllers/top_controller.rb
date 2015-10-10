@@ -1,7 +1,7 @@
 class TopController < ApplicationController
   def index
-    @items = Item.all.limit(5)
+    @items = Item.page(1).per(20)
   end
 
-  
+
 end
