@@ -19,6 +19,6 @@ $ ->
       data :
         keyword : keyword
     .done (data)-> 
-      console.log(data)
+      console.log(JSON.stringify(data))
     .always ->
       $keyword.parent().addClass "waiting"
