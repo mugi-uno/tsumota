@@ -1,27 +1,45 @@
-# ファイルクローラ
+require "collector.rb"
+require "register.rb"
+
+# ファイル収集バッチ本体
 class Tasks::Crawler
 
   # TODO : テスト用/基底ルートパス - modelから取得する形に変えること
-#  ROOT_PATH = "/Users/mugi/develop/ruby/tsumota/work"
+  ROOT_PATH = "/Users/mugi/develop/ruby/tsumota/work"
 
   # クローリングの実行
   def self.run
-    p "run!"
+    # p "run!"
 
-    # 管理画面等から登録された設定情報をすべて取得
-    setting = Setings.first
+    # # todo : 管理画面等から登録された設定情報をすべて取得
+    # # setting = Setings.first
 
+    # # 基底ディレクトリ内の全ファイルを捜査
+    # # 未登録状態のファイルをすべて登録する
+    # Dir.glob("#{ROOT_PATH}/*").each {|filename|
+    #   p "#{filename} -> #{File.ftype(filename)}"
+    #   if File.file?(filename)
+    #     p "file !! : #{filename}"
+    #   else
+    #     p "not file !! : #{filename}"
+    #   end
+    # }
 
-    # 基底ディレクトリ内の全ファイルを捜査
-    # 未登録状態のファイルをすべて登録する
+    collector = Collector.new ROOT_PATH
 
-    Dir.glob("#{ROOT_PATH}/*").each {|filename|
-      p "#{filename} -> #{File.ftype(filename)}"
-      if File.file?(filename)
-        p "file !! : #{filename}"
-      else
-        p "not file !! : #{filename}"
-      end
+    # 捜索した全パスに対し登録処理を実行
+    # collector.collect {|filename|
+    #   Register.register filename
+    # }
+    collector.collect {|filename|
+      Register.register filename
     }
+  end
+
+
+  # 基底dir配下の全ファイルを取得
+  # todo:再帰処理
+  def register
+
   end
 end
