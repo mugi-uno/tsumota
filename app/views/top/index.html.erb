@@ -1,11 +1,9 @@
-<div class="jumbotron">
-  <form>
-    <div class="form-group">
-      <input type="text" class="form-control" id="keyword" placeholder="キーワードを入力">
-    </div>
-  </form>
-</div>
-
+<form>
+  <div class="form-group keyword-box waiting">
+    <span class="loading-icon"><%= image_tag 'loading.gif' %></span>
+    <input type="text" class="form-control" id="keyword" placeholder="キーワードを入力">
+  </div>
+</form>
 
 <table class="table">
   <tr>

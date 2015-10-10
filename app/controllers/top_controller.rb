@@ -1,5 +1,7 @@
 class TopController < ApplicationController
   def index
-    @items = Item.all
+    @items = Item.all.limit(5)
   end
+
+  
 end
