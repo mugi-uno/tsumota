@@ -4,6 +4,7 @@
 
 $ ->
   $keyword = $('#keyword')
+  $items_list = $('#items_list')
 
   $keyword.on "input", ->
     # todo:defer
@@ -18,7 +19,7 @@ $ ->
       method : 'GET'
       data :
         keyword : keyword
-    .done (data)-> 
-      console.log(JSON.stringify(data))
+    .done (html)-> 
+      $items_list.html html
     .always ->
       $keyword.parent().addClass "waiting"
