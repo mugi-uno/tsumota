@@ -1,2 +1,5 @@
+<div class="paginate_list">
+<%= paginate items, :remote => true %>
 <%= render partial: 'items/list', locals: {items: items} %>
-<%= paginate items %>
+<%= paginate items, :remote => true %>
+</div>
