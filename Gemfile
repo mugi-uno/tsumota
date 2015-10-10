@@ -25,7 +25,9 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 
 ## BOOTSTRAP
+gem 'autoprefixer-rails'
 gem 'bootstrap-sass'
+gem 'bootswatch-rails'
 
 gem 'kaminari'
 
