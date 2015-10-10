@@ -1,0 +1,25 @@
+<div class="jumbotron">
+  <form>
+    <div class="form-group">
+      <input type="email" class="form-control" id="keyword" placeholder="キーワードを入力">
+    </div>
+  </form>
+</div>
+
+
+<table class="table">
+  <tr>
+    <th></th>
+    <th>name</th>
+    <th>create at</th>
+    <th>update at</th>
+  </tr>
+  <% @items.each do |item| %>
+    <tr>
+      <td><span class="download"><%= image_tag "ios7-download-outline.png" %></span></td>
+      <td><%= item.filename %></td>
+      <td><%= item.created_at.to_s %></td>
+      <td><%= item.updated_at.to_s %></td>
+    </tr>
+  <% end %>  
+</table>
