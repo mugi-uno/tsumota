@@ -3,6 +3,22 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 $ ->
-  $('#keyword').on "input", ->
+  $keyword = $('#keyword')
+
+  $keyword.on "input", ->
+    # todo:defer
     # 入力値でインクリメンタルサーチ
-    console.log "input"
+    keyword = $keyword.val()
+
+    $keyword.parent().removeClass "waiting"
+
+    $.ajax
+      url : 'api/search'
+      processData : true
+      method : 'GET'
+      data :
+        keyword : keyword
+    .done (data)-> 
+      console.log(data)
+    .always ->
+      $keyword.parent().addClass "waiting"

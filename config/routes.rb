@@ -1,10 +1,12 @@
 Rails.application.routes.draw do
 
-  get 'items/show'
-
   root 'top#index'
 
+  get 'items/show'
+  get 'api/search' => 'items#search'
+
   resources :items, only: [:show]
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
