@@ -2,13 +2,42 @@
 <html>
 <head>
   <title>Tsumota</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= stylesheet_link_tag    'application', media: 'all' %>
+  <%= stylesheet_link_tag    'bootstrap-tagsinput' %>
+  <%= javascript_include_tag 'application' %>
+  <%= javascript_include_tag 'bootstrap-tagsinput.min' %>
   <%= csrf_meta_tags %>
 </head>
 <body>
 
-<%= yield %>
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <%= link_to 'tsumota', root_path, class: 'navbar-brand', data: { no_turbolink: true } %>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+          <%= link_to edit_setting_path do %>
+            <span class="setting-icon">
+            <%= image_tag 'ios7-gear-outline.png' %>
+            </span>
+          <% end %>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12">
+      <%= yield %>
+    </div>
+  </div>
+</div>
 
 </body>
 </html>
