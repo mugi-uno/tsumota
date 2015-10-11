@@ -9,8 +9,9 @@ class ItemsController < ApplicationController
   end
 
   def update
+    @item.assign_attributes item_params
     @item.tags.destroy_all
-    @item.import_tags_csv item_params[:tags]
+    @item.import_tags_csv tag_params[:tags]
     if @item.save
       redirect_to item_path
     else
@@ -43,6 +44,10 @@ class ItemsController < ApplicationController
   end
 
   def item_params
+    params.require(:item).permit(:description)
+  end
+
+  def tag_params
     params.require(:item).permit(:tags)
   end
 end

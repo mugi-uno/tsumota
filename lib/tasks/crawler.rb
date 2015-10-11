@@ -8,6 +8,12 @@ class Tasks::Crawler
 
   # クローリングの実行
   def self.run
+    setting = Setting.first
+
+    if setting.nil?
+      p "not find setting"
+    end
+
     # p "run!"
 
     # # todo : 管理画面等から登録された設定情報をすべて取得
@@ -24,7 +30,7 @@ class Tasks::Crawler
     #   end
     # }
 
-    collector = Collector.new ROOT_PATH
+    collector = Collector.new setting.root_path
 
     # 捜索した全パスに対し登録処理を実行
     # collector.collect {|filename|
