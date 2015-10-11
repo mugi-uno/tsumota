@@ -1,11 +1,14 @@
 Rails.application.routes.draw do
 
+  get 'tags/show'
+
   root 'top#index'
 
   get 'items/show'
   get 'api/search' => 'items#search'
-
   get 'items/:id/download' => 'items#download'
+
+  get 'tags/:name' => 'tags#show'
 
   resources :items, only: [:show, :edit, :update]
 
