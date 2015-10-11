@@ -1,3 +1,8 @@
 <h4><%= @setting.root_path %></h4>
 <h1><%= @item.relative_path %></h1>
+<% @item.tags.each do |tag| %>
+  <span class="label label-info"><%= tag.name %></span>
+<% end %>
+
+
 <%= link_to "edit", edit_item_path(@item) %>
