@@ -6,19 +6,22 @@ class Item < ActiveRecord::Base
 
   scope :matched_keyword, -> (keyword) {
     # todo : escape like
-    return nil if keyword.blank?
+    items = Item.all
+    keywords = keyword.to_s.split(/[\s　]/)
 
-    keywords = keyword.split(/[\s　]/)
+    keywords[0..-1].each do |kw|
+      next if kw == ":"
 
-    items = where('relative_path LIKE ?', "%#{keywords[0]}%")
-
-    keywords[1..-1].each do |kw|
-      items = items.where('relative_path LIKE ?', "%#{kw}%")
+      if kw.start_with?(":")
+        tagname = kw[1..-1]
+        items = items.includes(:tags).where('tags.name = ?', "#{tagname}").references(:tags)
+      else
+        items = items.where('relative_path LIKE ?', "%#{kw}%")
+      end
     end
 
     items.page(1).per(20)
   }
-
 
   def tags_csv
     tags.map {|tag| tag.name }.join(",")
