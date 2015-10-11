@@ -2,10 +2,6 @@ require "collector.rb"
 
 # ファイル収集バッチ本体
 class Tasks::Crawler
-
-  # TODO : テスト用/基底ルートパス - modelから取得する形に変えること
-  ROOT_PATH = "/Users/mugi/develop/ruby/tsumota/work"
-
   # クローリングの実行
   def self.run
     setting = Setting.first
