@@ -14,7 +14,7 @@ class Item < ActiveRecord::Base
 
       if kw.start_with?(":")
         tagname = kw[1..-1]
-        items = items.includes(:tags).where('tags.name = ?', "#{tagname}").references(:tags)
+        items = items.includes(:tags).where('tags.name LIKE ?', "#{tagname}").references(:tags)
       else
         items = items.where('relative_path LIKE ?', "%#{kw}%")
       end
@@ -23,6 +23,7 @@ class Item < ActiveRecord::Base
     items.page(1).per(20)
   }
 
+  # 付与されているタグ名をcsv区切りで得る
   def tags_csv
     tags.map {|tag| tag.name }.join(",")
   end
