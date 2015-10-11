@@ -10,9 +10,20 @@ class Collector
 
   # 基底パス配下を探索し、ファイルごとに受け取ったprocを呼ぶ
   def collect
-    @root_path.each_child {|pathname|
+    recursive_collect @root_path
+  end
+
+  # 再帰的に登録していく
+  def recursive_collect(pathname)
+    if pathname.directory?
+      pathname.each_child {|childpath|
+        recursive_collect childpath
+      }
+    end
+
+    if pathname.file?
       register pathname.relative_path_from(@root_path)
-    }
+    end
   end
 
   # 降るパス
