@@ -17,4 +17,22 @@ class Item < ActiveRecord::Base
 
     items.page(1).per(20)
   }
+
+
+  def tags_csv
+    tags.map {|tag| tag.name }.join(",")
+  end
+
+  def import_tags_csv(csv)
+    return self if csv.blank?
+
+    csv.split(",")
+    .uniq
+    .sort! {|tag1, tag2| tag1 <=> tag2}
+    .each {|name|
+      tags << Tag.find_or_create_by(name: name)
+    }
+
+    self
+  end
 end

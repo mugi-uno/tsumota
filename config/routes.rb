@@ -7,7 +7,7 @@ Rails.application.routes.draw do
 
   get 'items/:id/download' => 'items#download'
 
-  resources :items, only: [:show]
+  resources :items, only: [:show, :edit, :update]
 
   resource :setting, only: [:edit, :update]
 
