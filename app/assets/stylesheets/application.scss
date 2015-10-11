@@ -36,14 +36,21 @@ div.keyword-box {
   }
 }
 
-
-.configration-title img {
+.page-title img {
   width : 45px;
   height: 45px;
+  margin-right: 4px;
 }
 
 .item_form {
   .bootstrap-tagsinput {
     min-width : 100%;
+  }
+}
+
+.label {
+  a.tag {
+    color: inherit;
+    text-decoration: none;
   }
 }
