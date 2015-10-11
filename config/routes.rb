@@ -9,7 +9,7 @@ Rails.application.routes.draw do
 
   resources :items, only: [:show]
 
-  resource :setting, only: [:edit, :update], path: "setting"
+  resource :setting, only: [:edit, :update]
 
 
   # The priority is based upon order of creation: first created -> highest priority.
