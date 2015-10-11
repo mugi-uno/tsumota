@@ -10,6 +10,17 @@ span.download img {
   height: 30px;
 }
 
+span.setting-icon {
+  display : inline-block;
+  width : 30px;
+  height : 30px; 
+  background-color: #efefef;
+  img {
+    width : 30px;
+    height : 30px; 
+  }
+}
+
 
 div.keyword-box {
   span.loading-icon {
@@ -23,4 +34,10 @@ div.keyword-box {
       display : none;
     }
   }
+}
+
+
+.configration-title img {
+  width : 45px;
+  height: 45px;
 }

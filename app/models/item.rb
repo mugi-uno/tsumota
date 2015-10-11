@@ -1,5 +1,7 @@
 class Item < ActiveRecord::Base
   validates :relative_path, uniqueness: true
+  has_many :tag_items
+  has_many :tags, through: :tag_items
 
   scope :matched_keyword, -> (keyword) {
     # todo : escape like
