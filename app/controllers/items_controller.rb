@@ -12,9 +12,9 @@ class ItemsController < ApplicationController
     @item.tags.destroy_all
     @item.import_tags_csv item_params[:tags]
     if @item.save
-      render :edit
-    else
       redirect_to item_path
+    else
+      render :edit
     end
   end
 

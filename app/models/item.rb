@@ -2,6 +2,7 @@ class Item < ActiveRecord::Base
   validates :relative_path, uniqueness: true
   has_many :tag_items
   has_many :tags, through: :tag_items
+  accepts_nested_attributes_for :tag_items, :allow_destroy => true
 
   scope :matched_keyword, -> (keyword) {
     # todo : escape like
