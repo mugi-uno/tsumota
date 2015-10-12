@@ -1,4 +1,20 @@
 Rails.application.routes.draw do
+
+  get 'tags/show'
+
+  root 'top#index'
+
+  get 'items/show'
+  get 'api/search' => 'items#search'
+  get 'items/:id/download' => 'items#download'
+
+  get 'tags/:name' => 'tags#show'
+
+  resources :items, only: [:show, :edit, :update]
+
+  resource :setting, only: [:edit, :update]
+
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
