@@ -31,8 +31,6 @@ class Collector
     item = Item.new({relative_path: pathname.to_s})
     if item.save
       p "register : #{pathname.to_s}"
-    else
-      p "already exists : #{pathname.to_s}"
     end
   end
 end
