@@ -15,7 +15,7 @@
         <% end %>
       </td>
       <td>
-        <%= link_to item.relative_path, item %>
+        <%= link_to item.file_name, item %>
         <br>
         <% item.tags[0...3].each do |tag| %>
           <span class="label label-info"><%= link_to tag.name, "/tags/#{tag.name}", class: 'tag' %></span>

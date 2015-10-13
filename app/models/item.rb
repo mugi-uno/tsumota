@@ -23,6 +23,11 @@ class Item < ActiveRecord::Base
     items.page(1).per(20)
   }
 
+  # 相対パス末尾からファイル名のみを得る
+  def file_name
+    Pathname.new(relative_path).basename
+  end
+
   # 付与されているタグ名をcsv区切りで得る
   def tags_csv
     tags.map {|tag| tag.name }.join(",")
