@@ -1,11 +1,12 @@
 class SettingsController < ApplicationController
   def edit
-    @setting = Setting.first
+    @setting = Setting.first_or_initialize
   end
 
   def update
-    @setting = Setting.first
-    @setting.update_attributes(setting_params)
+    @setting = Setting.first_or_initialize
+    @setting.attributes = setting_params
+    @setting.save
     render :edit
   end
 
