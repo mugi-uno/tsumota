@@ -26,7 +26,7 @@ class Collector
     end
   end
 
-  # 降るパス
+  # パス登録
   def register(pathname)
     item = Item.new({relative_path: pathname.to_s})
     if item.save
