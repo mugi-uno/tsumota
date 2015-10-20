@@ -12,5 +12,8 @@
 //
 //= require jquery
 //= require bootstrap-sprockets
+//= require bootstrap-tagsinput.min
+//= require bootstrap3-typeahead.min
+//= require bloodhound.min
 //= require jquery_ujs
 //= require_tree .

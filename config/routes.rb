@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   get 'items/:id/download' => 'items#download'
 
   get 'tags/:name' => 'tags#show'
+  get 'api/tags/source' => 'tags#source'
 
   resources :items, only: [:show, :edit, :update]
 

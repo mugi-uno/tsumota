@@ -27,17 +27,35 @@ class Collector
     end
   end
 
-  # パス登録
+  # ファイル情報を登録。登録時にsha512によるハッシュ値を作成。
+  # - 同一パスのデータが登録されていない + 同一ハッシュのファイルがない => 新規
+  # - 同一パスのデータが登録されている + ハッシュが一致する => 登録済み（何もしない）
+  # - 同一パスのデータが登録されている + ハッシュが一致しない => 更新されたとみなしハッシュ値だけ変更
+  # - 同一パスのデータが登録されていない + 同一ハッシュのファイルがある => 移動後のディレクトリ検知。ディレクトリパスだけ変更。
   def register(root_path, pathname)
-    relative_path = pathname.relative_path_from(root_path)
+    relative_path = pathname.relative_path_from(root_path).to_s
+    digest = Digest::SHA512.file(pathname.to_s).to_s
 
-    item = Item.new({
-      relative_path: relative_path.to_s,
-      digest: Digest::SHA512.file(pathname.to_s)
-    })
+    # 同一パスのデータの登録有無を確認
+    path_matched_file = Item.where(relative_path: relative_path).first
 
-    if item.save
-      p "register : #{relative_path.to_s}"
+    # 存在する => hashがマッチするかどうかで判定
+    if path_matched_file.present?
+      return if path_matched_file.digest == digest
+
+      # hashを更新
+      path_matched_file.digest = digest
+      path_matched_file.save
+
+      p "hash changed : #{relative_path}"
+    else
+      # 同一hashのファイルが存在するか確認
+      digest_matched_file = Item.where(digest: digest).first_or_initialize
+      digest_matched_file.relative_path = relative_path
+      digest_matched_file.digest = digest
+      digest_matched_file.save
+
+      p "register : #{relative_path}"
     end
   end
 end
