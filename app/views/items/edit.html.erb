@@ -9,7 +9,7 @@
 
   <div class="form-group">
     <%= f.label :tags, 'タグ', class: "control-label" %>
-    <%= f.text_field :tags, value: @item.tags_csv, class: 'form-control typeahead-tags', data: { role: "tagsinput" } %>
+    <%= f.text_field :tags, value: @item.tags_csv, class: 'form-control typeahead-tags', data: { provide: "typeahead" } %>
   </div>
 
   <div class="form-group">
