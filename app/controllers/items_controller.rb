@@ -21,7 +21,7 @@ class ItemsController < ApplicationController
 
   def search
     items = Item.matched_keyword(params[:keyword]).page(params[:page]).per(20)
-    render partial: 'items/paginate_list', locals: { items: items }
+    render partial: 'items/paginate_list', locals: {items: items}
   end
 
   def download

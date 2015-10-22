@@ -12,6 +12,7 @@ class Collector
   # 基底パス配下を探索し、ファイルごとに受け取ったprocを呼ぶ
   def collect
     recursive_collect @root_path
+    mark_not_found @root_path
   end
 
   # 再帰的に登録していく
@@ -33,6 +34,9 @@ class Collector
   # - 同一パスのデータが登録されている + ハッシュが一致しない => 更新されたとみなしハッシュ値だけ変更
   # - 同一パスのデータが登録されていない + 同一ハッシュのファイルがある => 移動後のディレクトリ検知。ディレクトリパスだけ変更。
   def register(root_path, pathname)
+    # .から始まるファイルは隠しファイルとみなし処理しない
+    return if pathname.basename.to_s.start_with?('.')
+
     relative_path = pathname.relative_path_from(root_path).to_s
     digest = Digest::SHA512.file(pathname.to_s).to_s
 
@@ -56,6 +60,17 @@ class Collector
       digest_matched_file.save
 
       p "register : #{relative_path}"
+    end
+  end
+
+
+  # 登録済みの全データをチェックし、行方不明のものにはnot_foundマークを付与する
+  def mark_not_found(root_path)
+    Item.all.each do |item|
+      path = root_path + item.relative_path
+
+      item.not_found = !path.file?
+      item.save
     end
   end
 end

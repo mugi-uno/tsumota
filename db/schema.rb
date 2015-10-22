@@ -11,15 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151014150326) do
+ActiveRecord::Schema.define(version: 20151022144948) do
 
   create_table "items", force: :cascade do |t|
     t.text     "relative_path"
     t.text     "description"
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
     t.integer  "download_count", default: 0
     t.string   "digest"
+    t.boolean  "not_found",      default: false
   end
 
   create_table "settings", force: :cascade do |t|

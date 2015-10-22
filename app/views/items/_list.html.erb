@@ -10,9 +10,14 @@
   <% items.each do |item| %>
     <tr>
       <td>
-        <%= link_to("/items/#{item.id}/download") do %>
-          <span class="download"><%= image_tag "ios7-download-outline.png" %></span>
-        <% end %>
+        <% if item.not_found? %>
+              <span class="download"><%= image_tag "ios7-help-empty.png" %></span>
+        <% else %>
+          <%= link_to("/items/#{item.id}/download") do %>
+              <span class="download"><%= image_tag "ios7-download-outline.png" %></span>
+          <% end %>
+      <% end  %>
+
       </td>
       <td>
         <%= link_to item.file_name, item %>

@@ -1,3 +1,7 @@
+<% if @item.not_found? %>
+    <div class="alert alert-warning" role="alert">Sorry, This file could not be found...</div>
+<% end  %>
+
 <h4><%= (Pathname.new(@setting.root_path) + @item.relative_path).dirname %></h4>
 <h1><%= @item.file_name %></h1>
 
