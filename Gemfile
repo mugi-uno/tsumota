@@ -31,6 +31,9 @@ gem 'bootswatch-rails'
 
 gem 'kaminari'
 
+## Authentication
+gem 'devise'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
@@ -47,7 +50,7 @@ group :development, :test do
   gem 'binding_of_caller'
   gem 'sqlite3'
   gem 'rspec-rails'
-  gem "factory_girl_rails"
+  gem 'factory_girl_rails'
 
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
@@ -62,3 +65,4 @@ group :development, :test do
   gem 'rspec-rails'
 end
 
+gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw]
