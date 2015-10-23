@@ -6,7 +6,7 @@ class Item < ActiveRecord::Base
 
   scope :matched_keyword, -> (keyword) {
     # todo : escape like
-    items = Item.all
+    items = Item.includes(:tags).all
     keywords = keyword.to_s.split(/[\s　]/)
 
     keywords[0..-1].each do |kw|
@@ -14,7 +14,7 @@ class Item < ActiveRecord::Base
 
       if kw.start_with?(":")
         tagname = kw[1..-1]
-        items = items.includes(:tags).where('tags.name LIKE ?', "#{tagname}").references(:tags)
+        items = items.where('tags.name LIKE ?', "#{tagname}").references(:tags)
       else
         items = items.where('relative_path LIKE ?', "%#{kw}%")
       end
