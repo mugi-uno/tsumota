@@ -18,10 +18,15 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
                 <li>
-                    <%= link_to edit_setting_path do %>
-            <span class="setting-icon">
-            <%= image_tag 'ios7-gear-outline.png' %>
-            </span>
+                    <% if user_signed_in? %>
+                        <%= link_to 'Sign out', destroy_user_session_path, method: :delete %>
+                    <% end %>
+                </li>
+                <li>
+                    <%= link_to edit_settings_path do %>
+                        <span class="setting-icon">
+                        <%= image_tag 'ios7-gear-outline.png' %>
+                        </span>
                     <% end %>
                 </li>
             </ul>

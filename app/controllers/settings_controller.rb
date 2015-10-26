@@ -1,4 +1,6 @@
 class SettingsController < ApplicationController
+  before_action :authenticate_user!
+
   def edit
     @setting = Setting.first_or_initialize
   end

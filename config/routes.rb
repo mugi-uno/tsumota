@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
   devise_for :users
+
   get 'tags/show'
 
   root 'top#index'
@@ -14,7 +15,7 @@ Rails.application.routes.draw do
 
   resources :items, only: [:show, :edit, :update]
 
-  resource :setting, only: [:edit, :update]
+  resource :settings, only: [:edit, :update]
 
 
   # The priority is based upon order of creation: first created -> highest priority.

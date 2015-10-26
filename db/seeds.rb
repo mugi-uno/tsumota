@@ -6,3 +6,4 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 Setting.create(root_path: '/Users/mugi/develop/ruby/tsumota/work')
+User.create(email: 'admin@example.com', password: 'admin')
