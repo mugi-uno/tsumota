@@ -1,4 +1,4 @@
-require "collector.rb"
+require 'collector.rb'
 
 # ファイル収集バッチ本体
 class Tasks::Crawler
@@ -7,7 +7,7 @@ class Tasks::Crawler
     setting = Setting.first
 
     if setting.nil?
-      p "setting not find"
+      p 'setting not find'
     end
 
     collector = Collector.new setting.root_path

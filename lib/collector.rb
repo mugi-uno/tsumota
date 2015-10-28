@@ -18,8 +18,8 @@ class Collector
   # 再帰的に登録していく
   def recursive_collect(pathname)
     if pathname.directory?
-      pathname.each_child {|childpath|
-        recursive_collect childpath
+      pathname.each_child {|p|
+        recursive_collect p
       }
     end
 
