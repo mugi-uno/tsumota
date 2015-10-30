@@ -8,8 +8,13 @@
 
 
 span.download img {
-  width : 30px;
-  height: 30px;
+  width : 60px;
+  height: 60px;
+  opacity: 0.6;
+
+  &:hover {
+    opacity: 0.9;
+  }
 }
 
 span.setting-icon {
@@ -62,6 +67,11 @@ div.keyword-box {
 }
 
 .digest {
+  color : #aeaeae;
+  font-size : 0.8em;
+}
+
+.overview {
   color : #aeaeae;
   font-size : 0.8em;
 }

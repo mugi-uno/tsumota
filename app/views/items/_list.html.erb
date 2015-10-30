@@ -1,38 +1,47 @@
 <% if items.any? %>
-<table class="table">
-  <tr>
-    <th></th>
-    <th>name</th>
-    <th>downloads</th>
-    <th>created at</th>
-    <th>updated at</th>
-  </tr>
-  <% items.each do |item| %>
-    <tr>
-      <td>
-        <% if item.not_found? %>
-              <span class="download"><%= image_tag "ios7-help-empty.png" %></span>
-        <% else %>
-          <%= link_to("/items/#{item.id}/download") do %>
-              <span class="download"><%= image_tag "ios7-download-outline.png" %></span>
-          <% end %>
-      <% end  %>
+    <table class="table">
+      <tr>
+        <th></th>
+        <th>name</th>
+        <th>downloads</th>
+        <th>created at</th>
+        <th>updated at</th>
+      </tr>
+      <% items.each do |item| %>
+          <tr>
+            <td>
+              <% if item.not_found? %>
+                  <span class="download"><%= image_tag "ios7-help-empty.png" %></span>
+              <% else %>
+                  <%= link_to("/items/#{item.id}/download") do %>
+                      <span class="download"><%= image_tag "ios7-download-outline.png" %></span>
+                  <% end %>
+              <% end %>
 
-      </td>
-      <td>
-        <%= link_to item.file_name, item %>
-        <br>
-        <% item.tags[0...3].each do |tag| %>
-          <span class="label label-info"><%= link_to tag.name, "/tags/#{tag.name}", class: 'tag' %></span>
-        <% end %>
-        <% if item.tags.length > 3 %>...<% end %>
-      </td>
-      <td><%= item.download_count %></td>
-      <td><%= item.created_at.to_s %></td>
-      <td><%= item.updated_at.to_s %></td>
-    </tr>
-  <% end %>  
-</table>
+            </td>
+            <td>
+              <div>
+                <%= link_to item.file_name, item %>&nbsp;<span class="overview">(<%= Pathname.new(item.relative_path).dirname %>)</span>
+              </div>
+              <div>
+                <% item.tags[0...3].each do |tag| %>
+                    <span class="label label-info"><%= link_to tag.name, "/tags/#{tag.name}", class: 'tag' %></span>
+                <% end %>
+                    <% if item.tags.length > 3 %>...
+                <% end %>
+              </div>
+              <div>
+                <span class="overview">
+                    <%= truncate item.description[2..-1], length: 75 %>
+                </span>
+              </div>
+            </td>
+            <td><%= item.download_count %></td>
+            <td><%= item.created_at.to_s %></td>
+            <td><%= item.updated_at.to_s %></td>
+          </tr>
+      <% end %>
+    </table>
 <% else %>
-  not found
+    not found
 <% end %>
