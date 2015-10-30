@@ -48,6 +48,8 @@ gem 'whenever', :require => false
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+gem 'faker'
+
 group :development, :test do
   gem 'capybara'
   gem 'quiet_assets'
