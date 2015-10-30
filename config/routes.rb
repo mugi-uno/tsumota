@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   get 'tags/:name' => 'tags#show'
   get 'api/tags/source' => 'tags#source'
 
-  resources :items, only: [:show, :edit, :update]
+  resources :items, only: [:show, :edit, :update, :destroy]
 
   resource :settings, only: [:edit, :update]
 
